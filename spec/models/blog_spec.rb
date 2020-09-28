@@ -12,7 +12,7 @@ RSpec.describe Blog, type: :model do
     expect(blog).to be_valid
   end
 
-  it "タイトルとコンテンツが空欄" do
+  it "タイトルとコンテンツが空欄にすることを許可しない" do
     blog = Blog.new( title: "",
                      content:"")
     blog.valid?
@@ -20,14 +20,14 @@ RSpec.describe Blog, type: :model do
     expect(blog.errors[:content]).to include("can't be blank")
   end
 
-  it "タイトルが長すぎる" do
+  it "タイトルが長すぎることを許可しない" do
     blog = Blog.new( title: "a" * 51,
                      content:"aaaaa")
     blog.valid?
     expect(blog.errors[:title]).to include("is too long (maximum is 50 characters)")
   end
 
-  it "コンテンツが長すぎる" do
+  it "コンテンツが長すぎることを許可しない" do
     blog = Blog.new( title: "aaaaa",
                      content:"a" * 257)
     blog.valid?
