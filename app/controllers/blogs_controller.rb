@@ -21,7 +21,7 @@ class BlogsController < ApplicationController
   end
 
   def edit
-
+    @blog = Blog.find(params[:id])
   end
 
   def show
@@ -30,6 +30,7 @@ class BlogsController < ApplicationController
 
   def update
     respond_to do |format|
+      @blog = Blog.find(params[:id])
       if @blog.update(blog_params)
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
       else
